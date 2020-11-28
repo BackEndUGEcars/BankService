@@ -1,0 +1,45 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from BankServiceService WSDL service -->
+
+  <service name="BankService" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://webservices.uge.fr"/>
+      <parameter name="wsdlServiceElement" value="BankServiceService"/>
+      <parameter name="schemaQualified" value="http://webservices.uge.fr"/>
+      <parameter name="wsdlServicePort" value="BankService"/>
+      <parameter name="className" value="fr.uge.webservices.BankServiceSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="BankService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="receive" qname="operNS:receive" xmlns:operNS="http://webservices.uge.fr" returnQName="retNS:receiveReturn" xmlns:retNS="http://webservices.uge.fr" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:login" xmlns:pns="http://webservices.uge.fr" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:password" xmlns:pns="http://webservices.uge.fr" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:amount" xmlns:pns="http://webservices.uge.fr" type="tns:double" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="send" qname="operNS:send" xmlns:operNS="http://webservices.uge.fr" returnQName="retNS:sendReturn" xmlns:retNS="http://webservices.uge.fr" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:login" xmlns:pns="http://webservices.uge.fr" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:password" xmlns:pns="http://webservices.uge.fr" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:amount" xmlns:pns="http://webservices.uge.fr" type="tns:double" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="isAnAccount" qname="operNS:isAnAccount" xmlns:operNS="http://webservices.uge.fr" returnQName="retNS:isAnAccountReturn" xmlns:retNS="http://webservices.uge.fr" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:login" xmlns:pns="http://webservices.uge.fr" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:password" xmlns:pns="http://webservices.uge.fr" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="amountAvailable" qname="operNS:amountAvailable" xmlns:operNS="http://webservices.uge.fr" returnQName="retNS:amountAvailableReturn" xmlns:retNS="http://webservices.uge.fr" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:login" xmlns:pns="http://webservices.uge.fr" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:password" xmlns:pns="http://webservices.uge.fr" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:amount" xmlns:pns="http://webservices.uge.fr" type="tns:double" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="receive amountAvailable send isAnAccount"/>
+
+  </service>
+</deployment>

@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://webservices.uge.fr" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://webservices.uge.fr" xmlns:intf="http://webservices.uge.fr" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://webservices.uge.fr" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="receive">
+    <complexType>
+     <sequence>
+      <element name="login" type="xsd:string"/>
+      <element name="password" type="xsd:string"/>
+      <element name="amount" type="xsd:double"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="receiveResponse">
+    <complexType>
+     <sequence>
+      <element name="receiveReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="send">
+    <complexType>
+     <sequence>
+      <element name="login" type="xsd:string"/>
+      <element name="password" type="xsd:string"/>
+      <element name="amount" type="xsd:double"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="sendResponse">
+    <complexType>
+     <sequence>
+      <element name="sendReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="isAnAccount">
+    <complexType>
+     <sequence>
+      <element name="login" type="xsd:string"/>
+      <element name="password" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="isAnAccountResponse">
+    <complexType>
+     <sequence>
+      <element name="isAnAccountReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="amountAvailable">
+    <complexType>
+     <sequence>
+      <element name="login" type="xsd:string"/>
+      <element name="password" type="xsd:string"/>
+      <element name="amount" type="xsd:double"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="amountAvailableResponse">
+    <complexType>
+     <sequence>
+      <element name="amountAvailableReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="receiveRequest">
+
+      <wsdl:part element="impl:receive" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="receiveResponse">
+
+      <wsdl:part element="impl:receiveResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="sendResponse">
+
+      <wsdl:part element="impl:sendResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="amountAvailableRequest">
+
+      <wsdl:part element="impl:amountAvailable" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="isAnAccountResponse">
+
+      <wsdl:part element="impl:isAnAccountResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="amountAvailableResponse">
+
+      <wsdl:part element="impl:amountAvailableResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="isAnAccountRequest">
+
+      <wsdl:part element="impl:isAnAccount" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="sendRequest">
+
+      <wsdl:part element="impl:send" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="BankService">
+
+      <wsdl:operation name="receive">
+
+         <wsdl:input message="impl:receiveRequest" name="receiveRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:receiveResponse" name="receiveResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="send">
+
+         <wsdl:input message="impl:sendRequest" name="sendRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:sendResponse" name="sendResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="isAnAccount">
+
+         <wsdl:input message="impl:isAnAccountRequest" name="isAnAccountRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:isAnAccountResponse" name="isAnAccountResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="amountAvailable">
+
+         <wsdl:input message="impl:amountAvailableRequest" name="amountAvailableRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:amountAvailableResponse" name="amountAvailableResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="BankServiceSoapBinding" type="impl:BankService">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="receive">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="receiveRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="receiveResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="send">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="sendRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="sendResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="isAnAccount">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="isAnAccountRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="isAnAccountResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="amountAvailable">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="amountAvailableRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="amountAvailableResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="BankServiceService">
+
+      <wsdl:port binding="impl:BankServiceSoapBinding" name="BankService">
+
+         <wsdlsoap:address location="http://localhost:8080/BankService/services/BankService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
