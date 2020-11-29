@@ -15,33 +15,33 @@ public class Bank {
 	private boolean initialized = false;
 	private final HashMap<String, Account> accounts = new HashMap<String, Account>();
 
+	
+	/**
+	 * Constructor of Bank
+	 * @param bankJson
+	 */
 	public Bank(String bankJson) {
 		this.bankJson = Objects.requireNonNull(bankJson);
 	}
 
+	/**
+	 * init the bank and put in some datas
+	 * @throws IOException
+	 * @throws ParseException
+	 */
 	public void init() throws IOException, ParseException {
 		accounts.put("PJB", new Account("PJ", "Besnard", "PJB", "abcdef", 1574524));
 		accounts.put("LB", new Account("Louis", "Billaut", "LB", "ghijk", 635421));
 		accounts.put("AL", new Account("Armand", "Liegey", "AL", "lmnop", 524));
 		initialized = true;
-		//System.out.println(this.getClass().getResourceAsStream("test.json"));
-		
-		/*var json = IOUtils.toString(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("test.json")), StandardCharsets.UTF_8);
-		JSONParser parser = new JSONParser();
-
-
-		JSONObject jsonObject = (JSONObject) parser.parse(json);
-		//	            System.out.println(jsonObject);
-
-		var cars = (JSONArray) jsonObject.get("cars");
-		System.out.println(cars);*/
-
-
-
-		// initialiser ici la bank avec un json fraichement parsé
-		
 	}
 
+	/**
+	 * Check if the given parameters are an account
+	 * @param login
+	 * @param password
+	 * @return true if login and password are correct 
+	 */
 	public boolean isAnAccount(String login, String password) {
 		if (!initialized) throw new IllegalStateException("Bank must be initialized before calling any other method");
 		Objects.requireNonNull(login);
@@ -53,6 +53,11 @@ public class Bank {
 		return false;
 	}
 
+	/**
+	 * return the account corresponding to the given login 
+	 * @param login
+	 * @return the account corresponding to the given login 
+	 */
 	public Account getAccount(String login) {
 		if (!initialized) throw new IllegalStateException("Bank must be initialized before calling any other method");
 		return accounts.get(Objects.requireNonNull(login));

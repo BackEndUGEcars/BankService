@@ -18,6 +18,10 @@ public class BankService {
 	
 	private final Bank bank;
 
+	/**
+	 * Constructor of BankService
+	 * @throws ParseException
+	 */
 	public BankService() throws ParseException {
 		this.bank = new Bank("mon_json.json");
 		try {
@@ -29,10 +33,10 @@ public class BankService {
 
 
 	/**
-	 * Allows users to login
+	 * Check if the given parameters correspond to an account in the Bank
 	 * @param login The user login
 	 * @param password The user password
-	 * @return Returns -1 if the login / password don't match to any account, a connection token otherwise
+	 * @return true if parameters are correct
 	 */
 	private boolean login(String login, String password) {
 		Objects.requireNonNull(login);
@@ -43,7 +47,13 @@ public class BankService {
 		return false;
 	}
 
-
+	/**
+	 * To add amount to the account of given login and password
+	 * @param login the login
+	 * @param password the password
+	 * @param amount the amount
+	 * @return true if successful 
+	 */
 	public boolean receive(String login, String password, double amount) {
 		if (!login(login, password) || amount <= 0.00) return false;
 		Account current = bank.getAccount(login);
@@ -51,6 +61,13 @@ public class BankService {
 		return true;
 	}
 
+	/**
+	 * To remove amount from the account of given login and password
+	 * @param login the login
+	 * @param password the password
+	 * @param amount the amount 
+	 * @return true if successful 
+	 */
 	public boolean send(String login, String password, double amount) {
 		if (!login(login, password) || amount <= 0.00) return false;
 		Account current = bank.getAccount(login);
@@ -58,11 +75,24 @@ public class BankService {
 		return true;
 	}
 
+	/**
+	 * Check if the amount is available on the account of given login and password
+	 * @param login the login 
+	 * @param password the password
+	 * @param amount the amount
+	 * @return true if there is enough money on the account
+	 */
 	public boolean amountAvailable(String login, String password, double amount) {
 		if (!login(login, password)) return false;
 		return bank.getAccount(login).amountAvailable(amount);
 	}
 	
+	/**
+	 * Check if the given parameters correspond to an account in the Bank
+	 * @param login the login
+	 * @param password the password 
+	 * @return true if parameters are correct
+	 */
 	public boolean isAnAccount(String login, String password) {
 		Objects.requireNonNull(login);
 		Objects.requireNonNull(password);
